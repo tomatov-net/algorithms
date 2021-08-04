@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: go.docker
+    container_name: go-algorithms
+    environment:
+      # Все ваши зависимости будут расположены прямо здесь - /app/.go/pkg/mod
+      - GOPATH=/go
+    ports:
+      - 9192:9090
+      - "8001:8000"
+      - "40001:40000"
+    volumes:
+      - ./:/app
