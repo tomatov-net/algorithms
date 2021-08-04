@@ -36,7 +36,7 @@ func TestSearch(t *testing.T) {
 	}
 }
 
-func TestIsBalanced(t *testing.T) {
+func TestIsBST(t *testing.T) {
 	normalTree := &Node{Data: 666}
 	normalTree.Insert(12)
 	normalTree.Insert(33)
@@ -46,15 +46,33 @@ func TestIsBalanced(t *testing.T) {
 
 	badTree := &Node{
 		Data:  100,
-		Left:  &Node{Data: 1000}, //left is bigger than right, imbalanced tree
-		Right: &Node{Data: 99},   //right is smaller than left and parent, imbalanced tree
+		Left:  &Node{Data: 1000}, //left is bigger than right
+		Right: &Node{Data: 99},   //right is smaller than left and parent
 	}
 
-	if normalTree.IsBalanced(normalTree) != true {
+	if normalTree.IsBST(normalTree) != true {
 		t.Fail()
 	}
 
-	if badTree.IsBalanced(badTree) == true {
+	if badTree.IsBST(badTree) == true {
+		t.Fail()
+	}
+}
+
+func TestHeight(t *testing.T) {
+	normalTree := &Node{Data: 60} //root level 0
+	normalTree.Insert(121)        //right level 1
+	normalTree.Insert(33)         //left level 1
+	normalTree.Insert(6)          //left level 2
+	//                   60
+	//                  /  \
+	//				   33   121
+	//				  /
+	//				 6
+	// Max(1,1) + Max(2, 0) = 3
+	height := normalTree.Height(normalTree)
+
+	if height != 3 {
 		t.Fail()
 	}
 }

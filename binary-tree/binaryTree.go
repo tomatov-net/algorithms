@@ -1,5 +1,7 @@
 package binary_tree
 
+import "math"
+
 type Node struct {
 	Left  *Node
 	Right *Node
@@ -40,24 +42,12 @@ func (n *Node) Search(number int) *Node {
 	return nil
 }
 
-func (n *Node) IsBalanced(node *Node) bool {
-
+func (n *Node) Height(node *Node) float64 {
 	if node == nil {
-		return true
+		return 0
 	}
 
-	rightIsOk := true
-	leftIsOk := true
-
-	if node.Right != nil {
-		rightIsOk = node.Data < node.Right.Data && node.Right.IsBalanced(node.Right)
-	}
-
-	if node.Left != nil {
-		leftIsOk = node.Data > node.Left.Data && node.Left.IsBalanced(node.Left)
-	}
-
-	return rightIsOk && leftIsOk
+	return math.Max(n.Height(node.Left), n.Height(node.Right)) + 1
 }
 
 func (n *Node) IsBST(node *Node) bool {
@@ -70,11 +60,11 @@ func (n *Node) IsBST(node *Node) bool {
 	leftIsOk := true
 
 	if node.Right != nil {
-		rightIsOk = node.Data < node.Right.Data && node.Right.IsBalanced(node.Right)
+		rightIsOk = node.Data < node.Right.Data && node.Right.IsBST(node.Right)
 	}
 
 	if node.Left != nil {
-		leftIsOk = node.Data > node.Left.Data && node.Left.IsBalanced(node.Left)
+		leftIsOk = node.Data > node.Left.Data && node.Left.IsBST(node.Left)
 	}
 
 	return rightIsOk && leftIsOk
