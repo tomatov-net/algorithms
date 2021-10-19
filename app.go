@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 	binary_tree "tomatov.net/algorithms/binary-tree"
 )
 
@@ -17,6 +19,14 @@ func main() {
 		Left:  &binary_tree.Node{Data: 1000},
 		Right: &binary_tree.Node{Data: 99},
 	}
-	isBalanced := binaryTree.IsBalanced(badTree)
+	isBalanced := binaryTree.IsBST(badTree)
 	fmt.Println(isBalanced)
+
+	rand.Seed(time.Now().Unix())
+	fmt.Println(rand.Perm(10))
+	for _, val := range rand.Perm(100000000) {
+		binaryTree.Insert(val)
+		fmt.Println(val)
+	}
+
 }

@@ -5,7 +5,7 @@ docker exec -it go-algorithms bash
 
 # Run tests
 ````
-go run test
+go test
 ````
 
 # Init module
