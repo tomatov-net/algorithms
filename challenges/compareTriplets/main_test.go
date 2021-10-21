@@ -1,4 +1,4 @@
-package simpleArraySum
+package compareTriplets
 
 import (
 	"testing"

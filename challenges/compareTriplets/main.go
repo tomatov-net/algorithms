@@ -1,4 +1,4 @@
-package simpleArraySum
+package compareTriplets
 
 //https://www.hackerrank.com/challenges/compare-the-triplets/problem
 
